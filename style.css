@@ -120,20 +120,20 @@ header h1 {
     color: #a4133c;
 }
 
+/* Gallery Section Fixed for Vertical/Portrait Photos */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
+    justify-content: center;
+    gap: 25px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .photo-card {
-    width: 100%;
-    height: auto; /* Height auto karne se vertical image poori dikhegi */
-    max-height: 500px; /* Vertical photo ke hisab se height set ki hai */
-    object-fit: contain; /* Photo stretch ya cut nahi hogi */
-    border-radius: 8px;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s;
 }
@@ -144,9 +144,10 @@ header h1 {
 
 .photo-card img {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
+    height: 420px; /* Vertical photo ke liye height badha di hai */
+    object-fit: cover; /* Photo puri card me bina stretch hue fit hogi */
     border-radius: 8px;
+    display: block;
 }
 
 .photo-card p {
