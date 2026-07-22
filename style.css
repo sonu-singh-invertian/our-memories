@@ -129,9 +129,11 @@ header h1 {
 }
 
 .photo-card {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
+    width: 100%;
+    height: auto; /* Height auto karne se vertical image poori dikhegi */
+    max-height: 500px; /* Vertical photo ke hisab se height set ki hai */
+    object-fit: contain; /* Photo stretch ya cut nahi hogi */
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s;
 }
