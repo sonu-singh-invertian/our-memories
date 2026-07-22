@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Memories ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Lock Screen -->
+    <div id="lock-screen" class="lock-screen">
+        <div class="lock-card">
+            <h2>🔒 Private Space</h2>
+            <p>Enter our secret code to unlock our memories ❤️</p>
+            <input type="password" id="password-input" placeholder="Enter password...">
+            <button onclick="unlockSite()">Unlock</button>
+            <p id="error-msg" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until unlocked) -->
+    <div id="main-content" class="hidden">
+        
+        <!-- Header -->
+        <header>
+            <h1>Our Journey Together ❤️</h1>
+            <p>Every moment with you is special</p>
+        </header>
+
+        <!-- Days Together Counter -->
+        <section class="counter-section">
+            <h3>We have been together for:</h3>
+            <div id="together-counter" class="timer-box">Calculating...</div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="gallery-section">
+            <h2>Our Favorite Moments 📸</h2>
+            <div class="gallery-grid">
+                <div class="photo-card">
+                    <img src="https://picsum.photos/400/300?random=1" alt="Memory 1">
+                    <p>First Date ✨</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://picsum.photos/400/300?random=2" alt="Memory 2">
+                    <p>Late Night Long Drive 🚗</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://picsum.photos/400/300?random=3" alt="Memory 3">
+                    <p>Favorite Trip Together 🌄</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Notes -->
+        <section class="notes-section">
+            <h2>Little Love Notes 💌</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <h4>To My Favorite Person</h4>
+                    <p>Thank you for always making me laugh and standing by my side through everything. ❤️</p>
+                </div>
+                <div class="note-card">
+                    <h4>A Little Reminder</h4>
+                    <p>No matter how busy life gets, you will always be my highest priority. ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Made with ❤️ just for us.</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

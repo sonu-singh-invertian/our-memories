@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fff0f3;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Lock Screen */
+.lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.lock-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 350px;
+    width: 90%;
+}
+
+.lock-card h2 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+.lock-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.lock-card input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffccd5;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.lock-card button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lock-card button:hover {
+    background: #c9184a;
+}
+
+.error-msg {
+    color: #d90429 !important;
+    font-size: 13px !important;
+    margin-top: 10px;
+}
+
+/* Main Layout */
+header {
+    padding: 40px 20px 20px;
+    background: white;
+}
+
+header h1 {
+    color: #ff4d6d;
+    font-size: 2.2rem;
+}
+
+/* Timer Section */
+.counter-section {
+    background: #ffb3c1;
+    color: #590d22;
+    padding: 25px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 12px;
+}
+
+.timer-box {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Gallery */
+.gallery-section {
+    padding: 40px 20px;
+}
+
+.gallery-section h2, .notes-section h2 {
+    margin-bottom: 20px;
+    color: #a4133c;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.photo-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-card p {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Love Notes */
+.notes-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background: #fff;
+    border-left: 5px solid #ff4d6d;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.note-card h4 {
+    color: #ff4d6d;
+    margin-bottom: 8px;
+}
+
+footer {
+    padding: 20px;
+    background: #ffccd5;
+    color: #800f2f;
+    font-size: 14px;
+}
