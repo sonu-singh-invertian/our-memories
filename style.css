@@ -9,10 +9,51 @@ body {
     background-color: #fff0f3;
     color: #4a4a4a;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .hidden {
     display: none !important;
+}
+
+/* Music Button */
+#music-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 100;
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
 }
 
 /* Lock Screen */
@@ -38,155 +79,75 @@ body {
     width: 90%;
 }
 
-.lock-card h2 {
-    color: #ff4d6d;
-    margin-bottom: 10px;
-}
-
-.lock-card p {
-    font-size: 14px;
-    margin-bottom: 20px;
-    color: #666;
-}
-
+.lock-card h2 { color: #ff4d6d; margin-bottom: 10px; }
+.lock-card p { font-size: 14px; margin-bottom: 20px; color: #666; }
 .lock-card input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ffccd5;
-    border-radius: 8px;
-    outline: none;
-    font-size: 16px;
-    text-align: center;
-    margin-bottom: 15px;
+    width: 100%; padding: 12px; border: 2px solid #ffccd5;
+    border-radius: 8px; outline: none; font-size: 16px; text-align: center; margin-bottom: 15px;
 }
-
 .lock-card button {
-    width: 100%;
-    padding: 12px;
-    background: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    width: 100%; padding: 12px; background: #ff4d6d; color: white;
+    border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;
 }
 
-.lock-card button:hover {
-    background: #c9184a;
-}
+/* Header & Timer */
+header { padding: 40px 20px 20px; }
+header h1 { color: #ff4d6d; font-size: 2.2rem; }
 
-.error-msg {
-    color: #d90429 !important;
-    font-size: 13px !important;
-    margin-top: 10px;
-}
-
-/* Main Layout */
-header {
-    padding: 40px 20px 20px;
-    background: white;
-}
-
-header h1 {
-    color: #ff4d6d;
-    font-size: 2.2rem;
-}
-
-/* Timer Section */
 .counter-section {
-    background: #ffb3c1;
-    color: #590d22;
-    padding: 25px 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    border-radius: 12px;
+    background: #ffb3c1; color: #590d22; padding: 25px 20px;
+    margin: 20px auto; max-width: 600px; border-radius: 12px;
 }
+.timer-box { font-size: 1.5rem; font-weight: bold; margin-top: 10px; }
 
-.timer-box {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* Gallery */
-.gallery-section {
-    padding: 40px 20px;
-}
-
-.gallery-section h2, .notes-section h2 {
-    margin-bottom: 20px;
-    color: #a4133c;
-}
-
-/* Gallery Section Fixed for Vertical/Portrait Photos */
+/* Photo Gallery Fixed */
+.gallery-section { padding: 40px 20px; }
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
-    justify-content: center;
-    gap: 25px;
-    max-width: 1000px;
-    margin: 0 auto;
+    display: flex; justify-content: center; gap: 20px; max-width: 900px; margin: 0 auto;
 }
-
 .photo-card {
-    background: white;
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
+    background: white; padding: 15px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.4s;
+    max-width: 600px; width: 100%;
 }
-
-.photo-card:hover {
-    transform: translateY(-5px);
-}
-
+.photo-card:hover { transform: scale(1.02); }
 .photo-card img {
-    width: 100%;
-    height: auto;
-    max-height: 80vh; /* Screenshot ke hisab se poori photo dikhegi, upar-niche se kategi nahi */
-    object-fit: contain; /* Photo ka koi bhi hissa crop nahi hoga */
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
+    width: 100%; height: auto; max-height: 80vh; object-fit: contain;
+    border-radius: 8px; display: block; margin: 0 auto;
 }
 
-.photo-card p {
-    margin-top: 10px;
-    font-weight: 500;
+/* Surprise Section */
+.surprise-section { margin: 30px 0; }
+.surprise-btn {
+    background: linear-gradient(45deg, #ff4d6d, #ff758c);
+    color: white; border: none; padding: 15px 30px; font-size: 1.1rem;
+    font-weight: bold; border-radius: 30px; cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+    transition: transform 0.2s;
+}
+.surprise-btn:hover { transform: scale(1.08); }
+
+/* Modal Surprise Box */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(0,0,0,0.6); display: flex; align-items: center;
+    justify-content: center; z-index: 2000;
+}
+.modal-content {
+    background: white; padding: 30px; border-radius: 16px; max-width: 400px;
+    width: 90%; position: relative; animation: popUp 0.4s ease-out;
+}
+@keyframes popUp {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.close-btn {
+    position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #888;
 }
 
 /* Love Notes */
-.notes-section {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto 40px;
-}
+.notes-section { padding: 20px; max-width: 800px; margin: 0 auto 40px; }
+.notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.note-card { background: #fff; border-left: 5px solid #ff4d6d; padding: 20px; border-radius: 8px; text-align: left; }
 
-.notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.note-card {
-    background: #fff;
-    border-left: 5px solid #ff4d6d;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: left;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.note-card h4 {
-    color: #ff4d6d;
-    margin-bottom: 8px;
-}
-
-footer {
-    padding: 20px;
-    background: #ffccd5;
-    color: #800f2f;
-    font-size: 14px;
-}
+footer { padding: 20px; background: #ffccd5; color: #800f2f; }
