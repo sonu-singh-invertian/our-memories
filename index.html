@@ -58,15 +58,24 @@
         </section>
 
         <!-- Surprise Gift Section -->
-        <section class="surprise-section">
-            <h2>A Special Surprise For You 🎁</h2>
-            <button class="surprise-btn" onclick="triggerSurprise()">Click For A Surprise! ❤️</button>
-            
-            <div id="surprise-modal" class="modal hidden">
-                <div class="modal-content">
-                    <span class="close-btn" onclick="closeSurprise()">&times;</span>
-                    <h2>You Are My Everything! 💖</h2>
-                    <p>Tum meri life ka wo sabse haseen hissa ho, jiske aane se sab kuch khubsoorat ho gaya.
+       <!-- Surprise Gift Section with 2 Buttons -->
+<section class="surprise-section">
+    <h2>Special Surprises For You 🎁</h2>
+    
+    <div class="surprise-btn-group">
+        <!-- Button 1: Text & Confetti Surprise -->
+        <button class="surprise-btn" onclick="triggerSurprise1()">Surprise 1 ❤️</button>
+        
+        <!-- Button 2: Photo Surprise -->
+        <button class="surprise-btn alt-btn" onclick="triggerSurprise2()">Surprise 2 📸</button>
+    </div>
+
+    <!-- Modal 1: Text & Message -->
+    <div id="surprise-modal-1" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSurprise(1)">&times;</span>
+            <h2>You Are My Everything! 💖</h2>
+            <p>Tum meri life ka wo sabse haseen hissa ho, jiske aane se sab kuch khubsoorat ho gaya.
 
 Har choti khushi tumhare sath double ho jati hai aur har pareshani choti lagne lagti hai. Thank you mere sath har kadam par khade rehne ke liye aur mujhe itna pyaar dene ke liye.
 
@@ -74,11 +83,21 @@ You are, and will always be, my safe place."Pata nahi maine kya achha kiya tha j
 
 Tumhari ek smile mera pura din bana deti hai. Humari sath bitayi har ek memory mere liye sabse precious hai.
 
-Bas itna kehna tha... I love you more than words can ever express! 🌹✨" ❤️ 🌹</p>
-                </div>
-            </div>
-        </section>
+Bas itna kehna tha... I love you more than words can ever express! 🌹✨" ❤️</p>
+        </div>
+    </div>
 
+    <!-- Modal 2: Photo Surprise -->
+    <div id="surprise-modal-2" class="modal hidden">
+        <div class="modal-content photo-modal">
+            <span class="close-btn" onclick="closeSurprise(2)">&times;</span>
+            <h2>A Special Memory For You ✨</h2>
+            <!-- Yahan apni surprise photo ka path dalein -->
+            <img src="./fav_one.jpg" alt="Secret Surprise Photo" class="modal-surprise-img">
+            <p>my favourite one! 💕</p>
+        </div>
+    </div>
+</section>
         <!-- Love Notes -->
         <section class="notes-section">
             <h2>Little Love Notes 💌</h2>
