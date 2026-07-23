@@ -28,10 +28,9 @@
     <div id="main-content" class="hidden">
         
         <!-- Background Music -->
-       <!-- index.html me is line ko dhoond kar update karein -->
-<audio id="bg-music" loop>
-    <source src="./our_song.mp3" type="audio/mpeg">
-</audio>
+        <audio id="bg-music" loop>
+            <source src="our_song.mp3" type="audio/mpeg">
+        </audio>
         <button id="music-btn" onclick="toggleMusic()">🎵 Play Song</button>
 
         <!-- Header -->
@@ -51,30 +50,22 @@
             <h2>Our Favorite Moments 📸</h2>
             <div class="gallery-grid">
                 <div class="photo-card">
-                    <img src="image.jpeg" alt="First Date">
+                    <img src="./images/our_anniversary.jpg" alt="First Date">
                     <p>First Date 🌟</p>
                 </div>
             </div>
         </section>
 
         <!-- Surprise Gift Section -->
-       <!-- Surprise Gift Section with 2 Buttons -->
-<!-- Surprise Gift Section -->
-<section class="surprise-section">
-    <h2>Special Surprises For You 🎁</h2>
-    
-    <div class="surprise-btn-group">
-        <button class="surprise-btn" onclick="triggerSurprise1()">Surprise 1 ❤️</button>
-        <button class="surprise-btn alt-btn" onclick="triggerSurprise2()">Surprise 2 📸</button>
-    </div>
-
-    <!-- Modal 1: Text Message -->
-    <div id="surprise-modal-1" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeSurprise(1)">&times;</span>
-            <h2>You Are My Everything! 💖</h2>
-            <p>
-               Tum meri life ka wo sabse haseen hissa ho, jiske aane se sab kuch khubsoorat ho gaya.
+        <section class="surprise-section">
+            <h2>A Special Surprise For You 🎁</h2>
+            <button class="surprise-btn" onclick="triggerSurprise()">Click For A Surprise! ❤️</button>
+            
+            <div id="surprise-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeSurprise()">&times;</span>
+                    <h2>You Are My Everything! 💖</h2>
+                    <p>Tum meri life ka wo sabse haseen hissa ho, jiske aane se sab kuch khubsoorat ho gaya.
 
 Har choti khushi tumhare sath double ho jati hai aur har pareshani choti lagne lagti hai. Thank you mere sath har kadam par khade rehne ke liye aur mujhe itna pyaar dene ke liye.
 
@@ -82,22 +73,11 @@ You are, and will always be, my safe place."Pata nahi maine kya achha kiya tha j
 
 Tumhari ek smile mera pura din bana deti hai. Humari sath bitayi har ek memory mere liye sabse precious hai.
 
-Bas itna kehna tha... I love you more than words can ever express! 🌹✨"
-            </p>
-        </div>
-    </div>
+Bas itna kehna tha... I love you more than words can ever express! 🌹✨" 🌹</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Modal 2: Photo Surprise -->
-    <div id="surprise-modal-2" class="modal hidden">
-        <div class="modal-content photo-modal">
-            <span class="close-btn" onclick="closeSurprise(2)">&times;</span>
-            <h2>A Special Memory For You ✨</h2>
-            <!-- Note: Sidebar ke hisab se image ka path './fav_one.jpg' ya './image.jpeg' rakhein -->
-            <img src="./fav_one.jpg" alt="Secret Surprise Photo" class="modal-surprise-img">
-            <p>Our magical moment! 💕</p>
-        </div>
-    </div>
-</section>
         <!-- Love Notes -->
         <section class="notes-section">
             <h2>Little Love Notes 💌</h2>
