@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Special Memories ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Confetti Library for Surprise Effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="hearts-container"></div>
 
     <!-- Lock Screen -->
     <div id="lock-screen" class="lock-screen">
@@ -14,18 +19,24 @@
             <h2>🔒 Private Space</h2>
             <p>Enter our secret code to unlock our memories ❤️</p>
             <input type="password" id="password-input" placeholder="Enter password...">
-            <button onclick="unlockSite()">Unlock</button>
+            <button onclick="unlockSite()">Unlock 💖</button>
             <p id="error-msg" class="error-msg"></p>
         </div>
     </div>
 
-    <!-- Main Content (Hidden until unlocked) -->
+    <!-- Main Content -->
     <div id="main-content" class="hidden">
         
+        <!-- Background Music -->
+        <audio id="bg-music" loop>
+            <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        </audio>
+        <button id="music-btn" onclick="toggleMusic()">🎵 Play Song</button>
+
         <!-- Header -->
         <header>
             <h1>Our Journey Together ❤️</h1>
-            <p>Every moment with you is special</p>
+            <p>Every moment with you is my favorite memory ✨</p>
         </header>
 
         <!-- Days Together Counter -->
@@ -39,9 +50,22 @@
             <h2>Our Favorite Moments 📸</h2>
             <div class="gallery-grid">
                 <div class="photo-card">
-                    <img src="image.jpeg" alt="First Date">" 
-                    <p>First Date ✨</p>
-               
+                    <img src="./images/our_anniversary.jpg" alt="First Date">
+                    <p>First Date 🌟</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Surprise Gift Section -->
+        <section class="surprise-section">
+            <h2>A Special Surprise For You 🎁</h2>
+            <button class="surprise-btn" onclick="triggerSurprise()">Click For A Surprise! ❤️</button>
+            
+            <div id="surprise-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeSurprise()">&times;</span>
+                    <h2>You Are My Everything! 💖</h2>
+                    <p>Thank you for making my life so beautiful every single day. I love you endlessly! 🌹</p>
                 </div>
             </div>
         </section>
@@ -61,7 +85,6 @@
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <p>Made with ❤️ just for us.</p>
         </footer>
