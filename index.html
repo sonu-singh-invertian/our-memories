@@ -26,7 +26,7 @@
 
     <!-- Main Content -->
     <div id="main-content" class="hidden">
-        
+
         <!-- Background Music -->
         <audio id="bg-music" loop>
             <source src="our_song.mp3" type="audio/mpeg">
@@ -54,9 +54,36 @@
                     <p>First Date 🌟</p>
                 </div>
                 <div class="photo-card">
-            <img src="./our_new_pic.jpg" alt="New Memory">
-            <p>Another Magical Day ✨</p>
-        </div>
+                    <img src="./our_new_pic.jpg" alt="New Memory">
+                    <p>Another Magical Day ✨</p>
+                </div>
+                <!-- Add more photo-cards below by copying this block and changing the image src + caption -->
+                <div class="photo-card">
+                    <img src="photo3.jpg" alt="Memory 3">
+                    <p>Add your caption here ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Gallery -->
+        <section class="video-section">
+            <h2>Our Special Videos 🎬</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser doesn't support this video.
+                    </video>
+                    <p>Add your caption here 💕</p>
+                </div>
+                <!-- Add more video-cards below by copying this block and changing the video src + caption -->
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="video2.mp4" type="video/mp4">
+                        Your browser doesn't support this video.
+                    </video>
+                    <p>Add your caption here 💕</p>
+                </div>
             </div>
         </section>
 
@@ -64,7 +91,7 @@
         <section class="surprise-section">
             <h2>A Special Surprise For You 🎁</h2>
             <button class="surprise-btn" onclick="triggerSurprise()">Click For A Surprise! ❤️</button>
-            
+
             <div id="surprise-modal" class="modal hidden">
                 <div class="modal-content">
                     <span class="close-btn" onclick="closeSurprise()">&times;</span>
@@ -73,11 +100,11 @@
 
 Har choti khushi tumhare sath double ho jati hai aur har pareshani choti lagne lagti hai. Thank you mere sath har kadam par khade rehne ke liye aur mujhe itna pyaar dene ke liye.
 
-You are, and will always be, my safe place."Pata nahi maine kya achha kiya tha jo mujhe tum mili.
+You are, and will always be, my safe place. Pata nahi maine kya achha kiya tha jo mujhe tum mili.
 
 Tumhari ek smile mera pura din bana deti hai. Humari sath bitayi har ek memory mere liye sabse precious hai.
 
-Bas itna kehna tha... I love you more than words can ever express! 🌹✨" 🌹</p>
+Bas itna kehna tha... I love you more than words can ever express! 🌹✨</p>
                 </div>
             </div>
         </section>
@@ -95,6 +122,15 @@ Bas itna kehna tha... I love you more than words can ever express! 🌹✨" 🌹
                     <p>No matter how busy life gets, you will always be my highest priority. ✨</p>
                 </div>
             </div>
+        </section>
+
+        <!-- Our Diary -->
+        <section class="diary-section">
+            <h2>Our Diary 📔</h2>
+            <p class="diary-sub">Jo bhi dil mein hai, yahan likh do...</p>
+            <textarea id="diary-input" placeholder="Aaj ka mann kaisa hai? Yahan likho..."></textarea>
+            <button class="diary-save-btn" onclick="saveDiaryEntry()">Save Entry 💾</button>
+            <div id="diary-entries" class="diary-entries"></div>
         </section>
 
         <footer>
