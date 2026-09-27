@@ -175,6 +175,74 @@ header h1 { color: #ff4d6d; font-size: 2.2rem; }
 .notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 .note-card { background: #fff; border-left: 5px solid #ff4d6d; padding: 20px; border-radius: 8px; text-align: left; }
 
+/* Compliment Generator */
+.compliment-section { padding: 30px 20px; max-width: 600px; margin: 0 auto; }
+.compliment-box {
+    background: white; min-height: 80px; display: flex; align-items: center; justify-content: center;
+    padding: 20px; border-radius: 12px; font-size: 1.1rem; font-weight: 600; color: #c9184a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: opacity 0.3s ease; margin-bottom: 15px;
+}
+.compliment-btn {
+    background: linear-gradient(45deg, #ff4d6d, #ff758c); color: white; border: none; padding: 12px 26px;
+    border-radius: 25px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(255,77,109,0.35);
+}
+.compliment-btn:hover { transform: scale(1.05); }
+
+/* Love Quiz */
+.quiz-section { padding: 30px 20px; max-width: 600px; margin: 0 auto; }
+.quiz-box { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.quiz-question { font-weight: bold; margin-bottom: 15px; font-size: 1.05rem; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option-btn {
+    background: #fff0f3; border: 2px solid #ffccd5; padding: 10px; border-radius: 8px;
+    cursor: pointer; font-size: 0.95rem; text-align: left;
+}
+.quiz-option-btn:hover { background: #ffccd5; }
+.quiz-result { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.quiz-btn {
+    margin-top: 10px; background: #ff4d6d; color: white; border: none; padding: 10px 22px;
+    border-radius: 20px; font-weight: bold; cursor: pointer;
+}
+
+/* Spin the Wheel */
+.wheel-section { padding: 30px 20px; max-width: 500px; margin: 0 auto; }
+.wheel-wrap { position: relative; width: 260px; height: 260px; margin: 0 auto 20px; }
+.wheel-pointer {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    font-size: 1.6rem; color: #590d22; z-index: 5;
+}
+.wheel {
+    width: 260px; height: 260px; border-radius: 50%; position: relative;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2); border: 4px solid white;
+}
+.wheel-label {
+    position: absolute; top: 0; left: 50%; width: 2px; height: 50%;
+    transform-origin: bottom center; display: flex; justify-content: center;
+}
+.wheel-label span {
+    font-size: 0.7rem; font-weight: bold; color: white; white-space: nowrap;
+    margin-top: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.wheel-btn {
+    background: linear-gradient(45deg, #ff4d6d, #ff758c); color: white; border: none; padding: 12px 26px;
+    border-radius: 25px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(255,77,109,0.35);
+}
+.wheel-result { margin-top: 15px; font-weight: bold; font-size: 1.1rem; color: #c9184a; min-height: 24px; }
+
+/* Scratch Card */
+.scratch-section { padding: 30px 20px; max-width: 400px; margin: 0 auto; }
+.scratch-wrap {
+    position: relative; width: 300px; height: 150px; margin: 0 auto 15px;
+    border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.scratch-message {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #ff4d6d, #ff7eb3); color: white; font-weight: bold;
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; font-size: 1rem;
+}
+#scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; touch-action: none; }
+.scratch-btn { background: #ff4d6d; color: white; border: none; padding: 10px 22px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+
 /* Our Diary */
 .diary-section {
     padding: 20px 20px 40px;
