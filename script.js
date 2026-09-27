@@ -11,6 +11,7 @@ function unlockSite() {
         document.getElementById("main-content").classList.remove("hidden");
         startCounter();
         createHearts(); // Floating hearts start karein
+        loadDiaryEntries(); // Saved diary entries dikhayein
     } else {
         errorMsg.innerText = "Ghalat password! Kuch aur try karo 😉";
     }
@@ -77,4 +78,64 @@ function triggerSurprise() {
 
 function closeSurprise() {
     document.getElementById("surprise-modal").classList.add("hidden");
+}
+
+// ---------- Diary Functions ----------
+// Entries save hote hain browser ke localStorage mein (is device/browser tak limited).
+
+function getDiaryEntries() {
+    return JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+}
+
+function loadDiaryEntries() {
+    renderDiaryEntries(getDiaryEntries());
+}
+
+function saveDiaryEntry() {
+    const input = document.getElementById("diary-input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    const entries = getDiaryEntries();
+    entries.unshift({
+        text: text,
+        date: new Date().toLocaleString()
+    });
+    localStorage.setItem("diaryEntries", JSON.stringify(entries));
+    input.value = "";
+    renderDiaryEntries(entries);
+}
+
+function deleteDiaryEntry(index) {
+    const entries = getDiaryEntries();
+    entries.splice(index, 1);
+    localStorage.setItem("diaryEntries", JSON.stringify(entries));
+    renderDiaryEntries(entries);
+}
+
+function renderDiaryEntries(entries) {
+    const container = document.getElementById("diary-entries");
+    container.innerHTML = "";
+    entries.forEach((entry, i) => {
+        const div = document.createElement("div");
+        div.classList.add("diary-entry");
+
+        const deleteSpan = document.createElement("span");
+        deleteSpan.classList.add("entry-delete");
+        deleteSpan.innerText = "✖";
+        deleteSpan.onclick = () => deleteDiaryEntry(i);
+
+        const dateDiv = document.createElement("div");
+        dateDiv.classList.add("entry-date");
+        dateDiv.innerText = entry.date;
+
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("entry-text");
+        textDiv.innerText = entry.text; // innerText = safe, no HTML injection
+
+        div.appendChild(deleteSpan);
+        div.appendChild(dateDiv);
+        div.appendChild(textDiv);
+        container.appendChild(div);
+    });
 }
