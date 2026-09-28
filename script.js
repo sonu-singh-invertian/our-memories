@@ -113,9 +113,9 @@ function generateCompliment() {
 // ---------- Love Quiz ----------
 const QUIZ_QUESTIONS = [
     // 👈 Apne khud ke sawal-jawab yahan edit karo (correct: sahi option ka index, 0 se shuru)
-    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 2 },
-    { q: "Humari first date kahan hui thi?", options: ["Cafe", "Bus stop", "Movie", "Beach"], correct: 2 },
-    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "cuddling with you", "Travel", "Sleep"], correct: 2 }
+    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 0 },
+    { q: "Humari first date kahan hui thi?", options: ["Cafe", "bus stop", "Movie", "Beach"], correct: 1 },
+    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "cuddle", "Travel", "Sleep"], correct: 2 }
 ];
 
 let quizIndex = 0;
