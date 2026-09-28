@@ -114,8 +114,8 @@ function generateCompliment() {
 const QUIZ_QUESTIONS = [
     // 👈 Apne khud ke sawal-jawab yahan edit karo (correct: sahi option ka index, 0 se shuru)
     { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 0 },
-    { q: "Humari first date kahan hui thi?", options: ["Cafe", "bus stop", "Movie", "Beach"], correct: 1 },
-    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "cuddle", "Travel", "Sleep"], correct: 2 }
+    { q: "Humari first date kahan hui thi?", options: ["Cafe", "Bus stop", "Movie", "Beach"], correct: 1 },
+    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "Cuddle with you", "Travel", "Sleep"], correct: 2 }
 ];
 
 let quizIndex = 0;
@@ -296,14 +296,75 @@ function doScratch(e) {
 }
 
 // ---------- Diary Functions ----------
-// Entries save hote hain browser ke localStorage mein (is device/browser tak limited).
+// Firebase config yahan paste karo (setup steps chat mein bataye hain).
+// Jab tak config nahi bharte, diary sirf isi browser/device pe save hoti hai.
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-function getDiaryEntries() {
-    return JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAlt-vUa_66L60gIqQitPjisgHyNutknh0",
+  authDomain: "our-memories-c013b.firebaseapp.com",
+  projectId: "our-memories-c013b",
+  storageBucket: "our-memories-c013b.firebasestorage.app",
+  messagingSenderId: "863335718193",
+  appId: "1:863335718193:web:11e5e577f90fe55265e410"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+let diaryDb = null;
+
+function setDiaryStatus(msg) {
+    const el = document.getElementById("diary-status");
+    if (el) el.innerText = msg;
+}
+
+function initCloudDiary() {
+    const configured = FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith("PASTE");
+    if (!configured || typeof firebase === "undefined") return false;
+    try {
+        if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+        diaryDb = firebase.firestore();
+        return true;
+    } catch (e) {
+        console.error("Firebase init error:", e);
+        return false;
+    }
+}
+
+function getLocalEntries() {
+    try { return JSON.parse(localStorage.getItem("diaryEntries") || "[]"); }
+    catch (e) { return []; }
 }
 
 function loadDiaryEntries() {
-    renderDiaryEntries(getDiaryEntries());
+    if (initCloudDiary()) {
+        setDiaryStatus("☁️ Connecting...");
+        // onSnapshot = live sync: kisi bhi device pe entry aaye to sab jagah turant dikhe
+        diaryDb.collection("diary").orderBy("createdAt", "desc").onSnapshot(
+            (snap) => {
+                const entries = snap.docs.map((d) => {
+                    const data = d.data({ serverTimestamps: "estimate" });
+                    const when = data.createdAt ? data.createdAt.toDate() : new Date();
+                    return { id: d.id, text: data.text, date: when.toLocaleString() };
+                });
+                renderDiaryEntries(entries);
+                setDiaryStatus("☁️ Sab devices pe sync ho raha hai");
+            },
+            (err) => {
+                console.error(err);
+                diaryDb = null;
+                setDiaryStatus("⚠️ Cloud se connect nahi ho paya (Firestore rules check karo). Abhi sirf is device pe save hoga.");
+                renderDiaryEntries(getLocalEntries());
+            }
+        );
+    } else {
+        setDiaryStatus("📱 Abhi sirf is device pe save ho raha hai");
+        renderDiaryEntries(getLocalEntries());
+    }
 }
 
 function saveDiaryEntry() {
@@ -311,20 +372,40 @@ function saveDiaryEntry() {
     const text = input.value.trim();
     if (!text) return;
 
-    const entries = getDiaryEntries();
-    entries.unshift({
-        text: text,
-        date: new Date().toLocaleString()
-    });
-    localStorage.setItem("diaryEntries", JSON.stringify(entries));
+    if (diaryDb) {
+        input.value = "";
+        diaryDb.collection("diary").add({
+            text: text,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch((e) => {
+            console.error(e);
+            input.value = text; // text wapas daal do taaki likha hua kho na jaye
+            setDiaryStatus("⚠️ Save nahi hua — internet ya Firestore rules check karo");
+        });
+        return;
+    }
+
+    const entries = getLocalEntries();
+    entries.unshift({ text: text, date: new Date().toLocaleString() });
+    try { localStorage.setItem("diaryEntries", JSON.stringify(entries)); } catch (e) {}
     input.value = "";
     renderDiaryEntries(entries);
 }
 
-function deleteDiaryEntry(index) {
-    const entries = getDiaryEntries();
-    entries.splice(index, 1);
-    localStorage.setItem("diaryEntries", JSON.stringify(entries));
+function deleteDiaryEntry(key) {
+    if (!confirm("Ye entry delete kar dein?")) return;
+
+    if (diaryDb) {
+        diaryDb.collection("diary").doc(key).delete().catch((e) => {
+            console.error(e);
+            setDiaryStatus("⚠️ Delete nahi hua — Firestore rules check karo");
+        });
+        return;
+    }
+
+    const entries = getLocalEntries();
+    entries.splice(key, 1);
+    try { localStorage.setItem("diaryEntries", JSON.stringify(entries)); } catch (e) {}
     renderDiaryEntries(entries);
 }
 
@@ -338,7 +419,8 @@ function renderDiaryEntries(entries) {
         const deleteSpan = document.createElement("span");
         deleteSpan.classList.add("entry-delete");
         deleteSpan.innerText = "✖";
-        deleteSpan.onclick = () => deleteDiaryEntry(i);
+        const key = entry.id !== undefined ? entry.id : i;
+        deleteSpan.onclick = () => deleteDiaryEntry(key);
 
         const dateDiv = document.createElement("div");
         dateDiv.classList.add("entry-date");
