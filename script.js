@@ -75,7 +75,8 @@ function triggerSurprise() {
     confetti({
         particleCount: 100,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
+        colors: ["#cda86e", "#e8c893", "#c85a78", "#7d3550", "#f0e6d8"]
     });
 }
 
@@ -112,9 +113,9 @@ function generateCompliment() {
 // ---------- Love Quiz ----------
 const QUIZ_QUESTIONS = [
     // 👈 Apne khud ke sawal-jawab yahan edit karo (correct: sahi option ka index, 0 se shuru)
-    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 0 },
-    { q: "Humari first date kahan hui thi?", options: ["Cafe", "Park", "Movie", "Beach"], correct: 1 },
-    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "Food", "Travel", "Sleep"], correct: 2 }
+    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 2 },
+    { q: "Humari first date kahan hui thi?", options: ["Cafe", "Bus stop", "Movie", "Beach"], correct: 2 },
+    { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "cuddling with you", "Travel", "Sleep"], correct: 2 }
 ];
 
 let quizIndex = 0;
@@ -179,45 +180,65 @@ const WHEEL_OPTIONS = [
 let wheelRotation = 0;
 let wheelSpinning = false;
 
+function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 function buildWheel() {
     const wheel = document.getElementById("wheel");
     const n = WHEEL_OPTIONS.length;
     const angle = 360 / n;
-    const colors = ["#ff4d6d", "#ff7eb3", "#ffb3c1", "#ff758c"];
-    let gradient = "conic-gradient(";
+    const cx = 130, cy = 130, r = 126;
+    const palette = [
+        { bg: "#cda86e", fg: "#17111f" },
+        { bg: "#c85a78", fg: "#17111f" },
+        { bg: "#7d3550", fg: "#f0e6d8" },
+        { bg: "#e8c893", fg: "#17111f" }
+    ];
+    // slice 0 starts at the top (12 o'clock) and goes clockwise
+    const pt = (deg) => {
+        const rad = (deg - 90) * Math.PI / 180;
+        return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+    };
+    let svg = '<svg viewBox="0 0 260 260" width="100%" height="100%">';
     WHEEL_OPTIONS.forEach((opt, i) => {
-        gradient += `${colors[i % colors.length]} ${i * angle}deg ${(i + 1) * angle}deg${i < n - 1 ? "," : ""}`;
+        const a0 = i * angle, a1 = (i + 1) * angle;
+        const [x0, y0] = pt(a0);
+        const [x1, y1] = pt(a1);
+        let ci = i % palette.length;
+        if (i === n - 1 && ci === 0 && n > 1) ci = 2; // avoid same colour touching first slice
+        const c = palette[ci];
+        svg += `<path d="M${cx},${cy} L${x0},${y0} A${r},${r} 0 ${angle > 180 ? 1 : 0} 1 ${x1},${y1} Z" fill="${c.bg}" stroke="#211829" stroke-width="1"/>`;
+        const mid = a0 + angle / 2;
+        svg += `<text x="${cx + r - 10}" y="${cy}" text-anchor="end" dominant-baseline="middle" font-size="10" font-weight="600" fill="${c.fg}" transform="rotate(${mid - 90} ${cx} ${cy})">${escapeHtml(opt)}</text>`;
     });
-    gradient += ")";
-    wheel.style.background = gradient;
-    wheel.innerHTML = "";
-    WHEEL_OPTIONS.forEach((opt, i) => {
-        const label = document.createElement("div");
-        label.classList.add("wheel-label");
-        const mid = angle * i + angle / 2;
-        label.style.transform = `rotate(${mid}deg)`;
-        const span = document.createElement("span");
-        span.style.transform = "rotate(90deg)";
-        span.innerText = opt;
-        label.appendChild(span);
-        wheel.appendChild(label);
-    });
+    svg += `<circle cx="${cx}" cy="${cy}" r="12" fill="#211829" stroke="#cda86e" stroke-width="2"/></svg>`;
+    wheel.innerHTML = svg;
 }
 
 function spinWheel() {
     if (wheelSpinning) return;
     wheelSpinning = true;
+    document.getElementById("wheel-result").innerText = "";
+
     const n = WHEEL_OPTIONS.length;
     const angle = 360 / n;
-    const extraSpins = 5 + Math.floor(Math.random() * 3);
-    const randomOffset = Math.random() * 360;
-    wheelRotation += extraSpins * 360 + randomOffset;
+
+    // Winner pehle decide hota hai, phir wheel exactly us slice pe rukta hai
+    const index = Math.floor(Math.random() * n);
+    const jitter = (Math.random() - 0.5) * angle * 0.6; // slice ke beech ke 60% mein hi ruke, boundary se door
+    const sliceAtPointer = index * angle + angle / 2 + jitter;
+    const targetMod = ((360 - sliceAtPointer) % 360 + 360) % 360;
+    const currentMod = ((wheelRotation % 360) + 360) % 360;
+    let delta = targetMod - currentMod;
+    if (delta < 0) delta += 360;
+    wheelRotation += (5 + Math.floor(Math.random() * 3)) * 360 + delta;
+
     const wheel = document.getElementById("wheel");
     wheel.style.transition = "transform 4s cubic-bezier(0.2,0.8,0.2,1)";
     wheel.style.transform = `rotate(${wheelRotation}deg)`;
+
     setTimeout(() => {
-        const normalized = wheelRotation % 360;
-        const index = Math.floor(((360 - normalized) % 360) / angle);
         document.getElementById("wheel-result").innerText = `Tumhe mila: ${WHEEL_OPTIONS[index]} 🎉`;
         wheelSpinning = false;
     }, 4100);
@@ -243,9 +264,9 @@ function newScratchCard() {
     msgBox.innerText = SCRATCH_MESSAGES[Math.floor(Math.random() * SCRATCH_MESSAGES.length)];
 
     scratchCtx.globalCompositeOperation = "source-over";
-    scratchCtx.fillStyle = "#c0c0c0";
+    scratchCtx.fillStyle = "#3a2f42";
     scratchCtx.fillRect(0, 0, canvas.width, canvas.height);
-    scratchCtx.fillStyle = "#888";
+    scratchCtx.fillStyle = "#cda86e";
     scratchCtx.font = "bold 16px sans-serif";
     scratchCtx.textAlign = "center";
     scratchCtx.fillText("Scratch here! 👆", canvas.width / 2, canvas.height / 2);
