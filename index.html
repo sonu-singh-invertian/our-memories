@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Special Memories ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
     <!-- Confetti Library for Surprise Effect -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -45,7 +47,7 @@
             <div id="together-counter" class="timer-box">Calculating...</div>
         </section>
 
-        <!-- Photo Gallery -->
+        <!-- Photo Gallery (original photos — pehle jaise hi) -->
         <section class="gallery-section">
             <h2>Our Favorite Moments 📸</h2>
             <div class="gallery-grid">
@@ -57,29 +59,55 @@
                     <img src="./our_new_pic.jpg" alt="New Memory">
                     <p>Another Magical Day ✨</p>
                 </div>
-                <!-- Add more photo-cards below by copying this block and changing the image src + caption -->
+            </div>
+        </section>
+
+        <!-- More Photos: naye photos yahan add karo (upar wale photos ko touch nahi kiya) -->
+        <!-- Kaise add karein: GitHub repo mein photo upload karo (jaise photo3.jpg), aur neeche src wahi naam rakho.
+             Jab tak file upload nahi hoti, wo slot apne aap chhupa rehta hai. Aur chahiye to ek block copy-paste kar lo. -->
+        <section class="more-photos-section">
+            <h2>More Memories 🖼️</h2>
+            <div class="more-photos-grid">
                 <div class="photo-card">
-                    <img src="photo3.jpg" alt="Memory 3">
+                    <img src="photo3.jpg" alt="Memory 3" onerror="this.closest('.photo-card').style.display='none'">
+                    <p>Add your caption here ✨</p>
+                </div>
+                <div class="photo-card">
+                    <img src="photo4.jpg" alt="Memory 4" onerror="this.closest('.photo-card').style.display='none'">
+                    <p>Add your caption here ✨</p>
+                </div>
+                <div class="photo-card">
+                    <img src="photo5.jpg" alt="Memory 5" onerror="this.closest('.photo-card').style.display='none'">
+                    <p>Add your caption here ✨</p>
+                </div>
+                <div class="photo-card">
+                    <img src="photo6.jpg" alt="Memory 6" onerror="this.closest('.photo-card').style.display='none'">
                     <p>Add your caption here ✨</p>
                 </div>
             </div>
         </section>
 
-        <!-- Video Gallery -->
+        <!-- Video Gallery: videos yahan add karo (file ka naam same rakho, jaise video1.mp4) -->
         <section class="video-section">
             <h2>Our Special Videos 🎬</h2>
             <div class="video-grid">
                 <div class="video-card">
                     <video controls preload="metadata">
-                        <source src="video1.mp4" type="video/mp4">
+                        <source src="video1.mp4" type="video/mp4" onerror="this.closest('.video-card').style.display='none'">
                         Your browser doesn't support this video.
                     </video>
                     <p>Add your caption here 💕</p>
                 </div>
-                <!-- Add more video-cards below by copying this block and changing the video src + caption -->
                 <div class="video-card">
                     <video controls preload="metadata">
-                        <source src="video2.mp4" type="video/mp4">
+                        <source src="video2.mp4" type="video/mp4" onerror="this.closest('.video-card').style.display='none'">
+                        Your browser doesn't support this video.
+                    </video>
+                    <p>Add your caption here 💕</p>
+                </div>
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="video3.mp4" type="video/mp4" onerror="this.closest('.video-card').style.display='none'">
                         Your browser doesn't support this video.
                     </video>
                     <p>Add your caption here 💕</p>
