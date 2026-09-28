@@ -194,6 +194,7 @@ Bas itna kehna tha... I love you more than words can ever express! 🌹✨</p>
         <section class="diary-section">
             <h2>Our Diary 📔</h2>
             <p class="diary-sub">Jo bhi dil mein hai, yahan likh do...</p>
+            <p id="diary-status" class="diary-status"></p>
             <textarea id="diary-input" placeholder="Aaj ka mann kaisa hai? Yahan likho..."></textarea>
             <button class="diary-save-btn" onclick="saveDiaryEntry()">Save Entry 💾</button>
             <div id="diary-entries" class="diary-entries"></div>
@@ -205,6 +206,9 @@ Bas itna kehna tha... I love you more than words can ever express! 🌹✨</p>
 
     </div>
 
+    <!-- Firebase (diary ko sab devices pe sync karne ke liye) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
