@@ -123,25 +123,33 @@ header p { color: var(--text-muted); margin-top: 8px; }
 .counter-section h3 { font-family: 'Inter', sans-serif; font-weight: 500; color: var(--text-muted); }
 .timer-box { font-size: 1.5rem; font-weight: 600; margin-top: 10px; color: var(--gold-bright); }
 
-/* Photo Gallery */
-.gallery-section { padding: 45px 20px; }
+/* Photo Gallery — original photos: pehle jaisa hi size & layout (unchanged) */
+.gallery-section { padding: 45px 20px 20px; }
 .gallery-section h2 { color: var(--text); margin-bottom: 25px; }
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px; max-width: 950px; margin: 0 auto;
+    display: flex; justify-content: center; gap: 20px; max-width: 900px; margin: 0 auto;
 }
 .photo-card {
     background: var(--panel); border: 1px solid var(--panel-border);
-    padding: 14px; border-radius: 14px;
+    padding: 15px; border-radius: 14px;
     box-shadow: 0 10px 26px rgba(0,0,0,0.35); transition: transform 0.4s, border-color 0.3s;
+    max-width: 600px; width: 100%;
 }
 .photo-card:hover { transform: translateY(-4px); border-color: var(--gold); }
 .photo-card img {
-    width: 100%; height: 260px; object-fit: cover;
-    border-radius: 10px; display: block; margin: 0 auto;
+    width: 100%; height: auto; max-height: 80vh; object-fit: contain;
+    border-radius: 8px; display: block; margin: 0 auto;
 }
 .photo-card p { margin-top: 12px; font-size: 0.95rem; color: var(--text-muted); }
+
+/* More Photos — upar wale photos ke niche naye photos (same card size, 2 per row) */
+.more-photos-section { padding: 20px 20px 30px; }
+.more-photos-section h2 { color: var(--text); margin-bottom: 25px; }
+.more-photos-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+    max-width: 900px; margin: 0 auto;
+}
+.more-photos-grid .photo-card { flex: 1 1 calc(50% - 20px); min-width: 260px; max-width: 600px; }
 
 /* Video Gallery */
 .video-section { padding: 10px 20px 45px; }
