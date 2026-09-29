@@ -122,7 +122,7 @@ function generateCompliment() {
 // ---------- Love Quiz ----------
 const QUIZ_QUESTIONS = [
     // 👈 Apne khud ke sawal-jawab yahan edit karo (correct: sahi option ka index, 0 se shuru)
-    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 0 },
+    { q: "Meri favorite color kya hai?", options: ["Pink", "Blue", "Black", "Green"], correct: 2 },
     { q: "Humari first date kahan hui thi?", options: ["Cafe", "Bus stop", "Movie", "Beach"], correct: 1 },
     { q: "Mujhe sabse zyada kya pasand hai?", options: ["Music", "Cuddle with you", "Travel", "Sleep"], correct: 2 }
 ];
@@ -256,10 +256,10 @@ function spinWheel() {
 // ---------- Scratch Card ----------
 const SCRATCH_MESSAGES = [
     // 👈 Apne khud ke surprises/messages yahan edit karo
-    "Tumse pyaar karta/karti hoon! 💖",
-    "Tum meri jaan ho! 💫",
+    "lip kiss kiss/se!!XX! 💖",
+    "neck kiss/kiss on whole body 🌚! 💫",
     "Aaj tumhe dinner pe le ja raha/rahi hoon! 🍽️",
-    "Tum duniya ki sabse best ho! 🌟"
+    "mai gadhi hu! 🌟"
 ];
 
 let scratchCtx;
