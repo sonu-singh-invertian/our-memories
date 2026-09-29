@@ -296,25 +296,16 @@ function doScratch(e) {
 }
 
 // ---------- Diary Functions ----------
-// Firebase config yahan paste karo (setup steps chat mein bataye hain).
-// Jab tak config nahi bharte, diary sirf isi browser/device pe save hoti hai.
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAlt-vUa_66L60gIqQitPjisgHyNutknh0",
-  authDomain: "our-memories-c013b.firebaseapp.com",
-  projectId: "our-memories-c013b",
-  storageBucket: "our-memories-c013b.firebasestorage.app",
-  messagingSenderId: "863335718193",
-  appId: "1:863335718193:web:11e5e577f90fe55265e410"
+// Tumhara Firebase config (apna project ka hai, real values hain).
+const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyAlt-vUa_66L60gIqQitPjisgHyNutknh0",
+    authDomain: "our-memories-c013b.firebaseapp.com",
+    projectId: "our-memories-c013b",
+    storageBucket: "our-memories-c013b.firebasestorage.app",
+    messagingSenderId: "863335718193",
+    appId: "1:863335718193:web:11e5e577f90fe55265e410"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 let diaryDb = null;
 
 function setDiaryStatus(msg) {
