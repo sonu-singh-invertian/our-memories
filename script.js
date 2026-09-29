@@ -8,16 +8,25 @@ function unlockSite() {
 
     if (userPass === SECRET_PASSWORD) {
         document.getElementById("lock-screen").classList.add("hidden");
-        document.getElementById("main-content").classList.remove("hidden");
-        startCounter();
-        createHearts();       // Floating hearts start karein
-        loadDiaryEntries();   // Saved diary entries dikhayein
-        renderQuiz();         // Love quiz shuru karein
-        buildWheel();         // Spin wheel taiyaar karein
-        newScratchCard();     // Scratch card taiyaar karein
+        document.getElementById("welcome-overlay").classList.remove("hidden");
+        createHearts(); // hearts welcome screen ke peeche bhi chalte rahein
+        setTimeout(dismissWelcome, 3000); // button na dabaye to 3 sec mein khud aage badh jaye
     } else {
         errorMsg.innerText = "Ghalat password! Kuch aur try karo 😉";
     }
+}
+
+function dismissWelcome() {
+    const overlay = document.getElementById("welcome-overlay");
+    if (overlay.classList.contains("hidden")) return; // already dismissed
+    overlay.classList.add("hidden");
+    document.getElementById("main-content").classList.remove("hidden");
+    startCounter();
+    loadDiaryEntries();
+    renderQuiz();
+    buildWheel();
+    newScratchCard();
+    renderReasons();
 }
 
 // Enter Key Support
@@ -293,6 +302,63 @@ function doScratch(e) {
     scratchCtx.beginPath();
     scratchCtx.arc(x, y, 18, 0, Math.PI * 2);
     scratchCtx.fill();
+}
+
+// ---------- Sealed With Love (envelope) ----------
+function openEnvelope() {
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("love-letter");
+    if (envelope.classList.contains("opened")) return;
+    envelope.classList.add("opened");
+    setTimeout(() => {
+        letter.classList.remove("hidden");
+        letter.scrollIntoView({ behavior: "smooth", block: "center" });
+        confetti({
+            particleCount: 60,
+            spread: 60,
+            origin: { y: 0.5 },
+            colors: ["#cda86e", "#e8c893", "#c85a78", "#7d3550", "#f0e6d8"]
+        });
+    }, 600);
+}
+
+// ---------- 100 Reasons I Love You ----------
+const LOVE_REASONS = [
+    // 👈 Apni khud ki reasons yahan add karo — jitni chaho utni, list jitni badi hogi utni hi khaas lagegi
+    "Kyunki tum meri sabse achhi dost ho.",
+    "Tumhari smile mera pura din bana deti hai.",
+    "Tum meri baaton ko bina judge kiye sunti ho.",
+    "Tum meri sabse badi cheerleader ho.",
+    "Tumhare saath main sabse zyada khud ban pata/pati hoon.",
+    "Tum chhoti chhoti baaton ka bhi khayal rakhti ho.",
+    "Tumhari hansi sabse pyari awaaz hai jo maine suni hai.",
+    "Tum mushkil waqt mein bhi mera haath nahi chhodti.",
+    "Tum meri life ko itna colorful bana deti ho.",
+    "Kyunki tum, tum ho — aur wahi sabse special baat hai."
+];
+
+let reasonIndex = 0;
+
+function typewriter(el, text, speed = 28) {
+    el.innerText = "";
+    let i = 0;
+    const id = setInterval(() => {
+        el.innerText += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(id);
+    }, speed);
+}
+
+function renderReasons() {
+    const counter = document.getElementById("reasons-counter");
+    const textEl = document.getElementById("reasons-text");
+    counter.innerText = `Reason ${reasonIndex + 1} of ${LOVE_REASONS.length}`;
+    typewriter(textEl, LOVE_REASONS[reasonIndex]);
+}
+
+function nextReason() {
+    reasonIndex = (reasonIndex + 1) % LOVE_REASONS.length;
+    renderReasons();
 }
 
 // ---------- Diary Functions ----------
