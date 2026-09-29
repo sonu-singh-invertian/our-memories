@@ -26,6 +26,17 @@
         </div>
     </div>
 
+    <!-- Personalized Welcome (dikhta hai lock khulte hi, main content se pehle) -->
+    <div id="welcome-overlay" class="welcome-overlay hidden">
+        <div class="welcome-box">
+            <div class="welcome-heart">💗</div>
+            <h1 id="welcome-name">Welcome back, Bachche</h1>
+            <p>Tumhari wajah se hi ye jagah itni khaas hai ✨</p>
+            <button onclick="dismissWelcome()">Enter ❤️</button>
+        </div>
+    </div>
+
+
     <!-- Main Content -->
     <div id="main-content" class="hidden">
 
@@ -137,6 +148,23 @@ Bas itna kehna tha... I love you more than words can ever express! 🌹✨</p>
             </div>
         </section>
 
+        <!-- Sealed With Love — ek personal letter jo envelope khol ke milta hai -->
+        <section class="letter-section">
+            <h2>Sealed With Love ✉️</h2>
+            <div id="envelope" class="envelope" onclick="openEnvelope()">
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal">💌</div>
+                <p class="envelope-hint">Tap to open</p>
+            </div>
+            <div id="love-letter" class="love-letter hidden">
+                <p>Mere Bachche,</p>
+                <p>Jab bhi main tumhare baare mein sochta hoon, ek muskaan apne aap aa jati hai. Tumhare saath bitaya har pal, chahe chhota ho ya bada, mere liye sabse kimti hai.</p>
+                <p>Tum bas ek partner nahi ho, mera sabse safe jagah ho. Thank you mere zindagi mein aane ke liye, aur ise itna khoobsurat banane ke liye.</p>
+                <p>I love you, aaj, kal aur hamesha. 💖</p>
+                <p class="letter-signoff">— apka ulluu(pookiee boy) 💌🎀 ❤️</p>
+            </div>
+        </section>
+
         <!-- Love Notes -->
         <section class="notes-section">
             <h2>Little Love Notes 💌</h2>
@@ -157,6 +185,16 @@ Bas itna kehna tha... I love you more than words can ever express! 🌹✨</p>
             <h2>Sweet Compliment Generator 💬</h2>
             <div id="compliment-box" class="compliment-box">Click the button for a sweet surprise!</div>
             <button class="compliment-btn" onclick="generateCompliment()">Give Me A Compliment 💕</button>
+        </section>
+
+        <!-- 100 Reasons I Love You -->
+        <section class="reasons-section">
+            <h2>100 Reasons I Love You 💗</h2>
+            <div class="reasons-box">
+                <p id="reasons-counter" class="reasons-counter"></p>
+                <p id="reasons-text" class="reasons-text"></p>
+            </div>
+            <button class="reasons-btn" onclick="nextReason()">Next Reason 💕</button>
         </section>
 
         <!-- Love Quiz -->
